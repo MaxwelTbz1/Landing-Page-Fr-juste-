@@ -12,7 +12,7 @@ export default function Contact() {
       ref={ref}
       className="relative py-32 px-6 bg-gradient-to-br from-pink-600 to-purple-700 text-white overflow-hidden"
     >
-      {/* Décor fond */}
+      
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -21,7 +21,7 @@ export default function Contact() {
         }}
       />
 
-      {/* Contenu principal */}
+      
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         <span className="inline-block text-xl font-semibold uppercase tracking-widest text-pink-100 mb-4">
           Contact

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  
-  title: "Frejust B. | Monteur vidéo professionnel",
+  icons: {
+    icon: "/logo.png" 
+  },
+  title: "JeqoFx | Monteur vidéo professionnel",
   description:
     "Transformez vos idées en vidéos virales avec un monteur professionnel spécialisé dans les formats courts et YouTube.",
 };

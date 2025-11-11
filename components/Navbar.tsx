@@ -53,7 +53,7 @@ export default function Navbar() {
                     scrollToSection(item.toLowerCase().replace("à ", ""))
                   }
                   className={`transition-colors hover:text-pink-600 ${
-                    scrolled ? "text-green-700" : "text-black/90"
+                    scrolled ? "text-black" : "text-black/90"
                   }`}
                 >
                   {item}
@@ -66,7 +66,7 @@ export default function Navbar() {
         {/* Bouton CTA desktop */}
         <button
           onClick={() => scrollToSection("contact")}
-          className="hidden lg:block bg-gradient-to-r from-pink-600 to-purple-600 text-white px-7 py-3 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all"
+          className="hidden lg:block bg-gradient-to-r from-zinc-500 to-purple-600 text-white px-7 py-3 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all"
         >
           Commencer
         </button>
@@ -89,7 +89,7 @@ export default function Navbar() {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="absolute top-20 right-6 left-6 bg-white rounded-3xl shadow-2xl p-8 animate-in">
+          <div className="absolute top-20 right-6 left-6 bg-black rounded-3xl shadow-2xl p-8 animate-in">
             <ul className="space-y-4">
               {["Accueil", "À propos", "Offres", "Portfolio", "Contact"].map(
                 (item, i) => (

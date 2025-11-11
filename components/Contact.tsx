@@ -10,7 +10,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative py-32 px-6 bg-gradient-to-br from-pink-600 to-purple-700 text-white overflow-hidden"
+      className="relative py-32 px-6 bg-gradient-to-br from-zinc-900 to-purple-700 text-white overflow-hidden"
     >
       
       <div
@@ -56,8 +56,8 @@ export default function Contact() {
           <ContactCard
             icon={<Phone size={26} />}
             title="Téléphone"
-            value="+229 01 61 63 36 63"
-            href="tel:+2290161633663"
+            value="+229 01 61 63 36 82"
+            href="tel:+2290161633682"
           />
         </div>
 
@@ -76,7 +76,7 @@ export default function Contact() {
           </a>
 
           <a
-            href="https://wa.me/2290161633663"
+            href="https://wa.me/2290161633682"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center gap-3 border-2 border-white/60 text-white font-semibold text-lg px-8 py-4 rounded-full hover:bg-white hover:text-pink-700 hover:shadow-lg transition-all"

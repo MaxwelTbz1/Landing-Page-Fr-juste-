@@ -3,7 +3,6 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimations";
 
-
 export default function Hero() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -14,28 +13,29 @@ export default function Hero() {
 
   return (
     <header className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-pink-50 to-purple-100" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-pink-400/30 to-purple-600/30 rounded-full blur-3xl animate-spin" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-800/20 to-pink-500/20 rounded-full blur-3xl animate-spin" />
-        {/* <div
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
           }}
-        /> */}
+        />
+        {/* <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
+              backgroundSize: "50px 50px",
+            }}
+          />
+        </div> */}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-        
-        {/* <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-pink-200/50 rounded-full px-5 py-2 mb-8 shadow-lg">
-          {/* <span className="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full animate-pulse" /> */}
-          {/* <span className="text-sm font-medium bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            Nouveaux services disponibles
-          </span> */}
-        {/* </div> */}
 
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 text-gray-900">
           Le montage qui
@@ -111,7 +111,6 @@ export default function Hero() {
           ))}
         </div>
 
-        
         <button
           onClick={() => scrollToSection("about")}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce"

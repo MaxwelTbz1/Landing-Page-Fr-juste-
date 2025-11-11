@@ -40,7 +40,7 @@ export default function Footer() {
         <div>
           <p className="text-gray-700 text-sm font-medium">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-pink-600">Fréjuste</span>. Tous droits réservés.
+            <span className="font-semibold text-indigo-700">Fréjuste</span>. Tous droits réservés.
           </p>
           
         </div>
@@ -50,10 +50,10 @@ export default function Footer() {
           <p className="text-sm text-gray-600">
             Développé par{" "}
             <a
-              href="https://www.linkedin.com/in/RégisT"
+              href="https://www.github.com/MaxwelTbz1"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pink-600 font-semibold hover:underline"
+              className="text-indigo-600 font-bold hover:underline"
             >
               Régis
             </a>

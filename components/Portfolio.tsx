@@ -86,8 +86,17 @@ export default function Portfolio() {
   );
 }
 
+interface Project {
+  title: string;
+  views: string;
+  videoId: string;
+  description: string;
+}
+
+
 /* ---- Composant individuel ---- */
-function VideoCard({ project }) {
+function VideoCard({ project }: { project: Project }) {
+
   const [hovered, setHovered] = useState(false);
 
   return (

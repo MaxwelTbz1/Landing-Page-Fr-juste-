@@ -58,6 +58,11 @@ export default function Hero() {
                 strokeWidth="6"
                 strokeLinecap="round"
                 fill="none"
+                style={{
+                  strokeDasharray: 400, 
+                  strokeDashoffset: 400, 
+                  animation: "drawLine 2s ease-out forwards", 
+                }}
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -65,6 +70,14 @@ export default function Hero() {
                   <stop offset="100%" stopColor="#9333ea" />
                 </linearGradient>
               </defs>
+
+              <style jsx>{`
+                @keyframes drawLine {
+                  to {
+                    stroke-dashoffset: 0;
+                  }
+                }
+              `}</style>
             </svg>
           </span>
         </h1>

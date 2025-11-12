@@ -37,3 +37,36 @@ body {
   color: var(--foreground);
   font-family: Arial, 'Lucida Sans Regular', Verdana, Helvetica, sans-serif;
 }
+
+
+@keyframes rotate-slow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(360deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 40s ease-in-out infinite;
+}
+
+.animate-rotate-reverse {
+  animation: rotate-reverse 55s ease-in-out infinite;
+}

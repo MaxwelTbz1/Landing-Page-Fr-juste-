@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import logo from "/public/logo.png"; 
-
+import logo from "/public/logo.png";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,7 +14,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -28,19 +26,26 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/60 backdrop-blur-xl border-b border-white/20 shadow-md py-4"
-          : "bg-white/10 backdrop-blur-lg border-b border-white/10 py-6"
+          ? "bg-white/60 backdrop-blur-sm border-b border-white/20 shadow-md py-1"
+          : "bg-white/10 backdrop-blur-lg border-b border-white/10 py-1"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection("accueil")}>
-          <div className="w-16 h-15 bg-gradient-to-br rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-lg">
-            <a href="#">
-              <Image src={logo} alt="Logo Frejust B." width={190} height={190} />
-            </a>
-          </div>
-          
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-[80px]">
+       
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => scrollToSection("accueil")}
+        >
+          <a href="#" className="block">
+            <div className="relative w-[120px] h-[120px] overflow-visible">
+              <Image
+                src={logo}
+                alt="Logo Frejust B."
+                fill
+                className="object-contain scale-150 -translate-y-2"
+              />
+            </div>
+          </a>
         </div>
 
         {/* Menu desktop */}
@@ -74,7 +79,7 @@ export default function Navbar() {
         {/* Bouton menu mobile */}
         <button
           className={`lg:hidden transition-colors ${
-            scrolled ? "text-gray-900" : "text-white"
+            scrolled ? "text-gray-900" : "text-black"
           }`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -89,7 +94,7 @@ export default function Navbar() {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="absolute top-20 right-6 left-6 bg-black rounded-3xl shadow-2xl p-8 animate-in">
+          <div className="absolute top-20 right-6 left-6 bg-white rounded-3xl shadow-2xl p-8 animate-in">
             <ul className="space-y-4">
               {["Accueil", "À propos", "Offres", "Portfolio", "Contact"].map(
                 (item, i) => (

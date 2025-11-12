@@ -30,10 +30,10 @@ export default function Footer() {
             href="https://www.threads.net/@joachimbgh"
             icon={<AtSign size={22} />}
           />
-          <SocialLink
+          {/* <SocialLink
             href="https://wa.me/+22961633682"
             icon={<MessageCircle size={22} />}
-          />
+          /> */}
         </div>
 
         

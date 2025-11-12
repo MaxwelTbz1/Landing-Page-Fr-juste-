@@ -1,7 +1,8 @@
 "use client";
 
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useScrollAnimation } from "@/app/hooks/useScrollAnimations";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
@@ -9,22 +10,22 @@ export default function Hero() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const { ref, isVisible } = useScrollAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.3 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
+  }, [inView, controls]);
 
   return (
     <header className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-pink-50 to-purple-100" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-pink-400/30 to-purple-600/30 rounded-full blur-3xl animate-spin" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-800/20 to-pink-500/20 rounded-full blur-3xl animate-spin" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
-            backgroundSize: "50px 50px",
-          }}
-        />
-        {/* <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-pink-400 to-purple-600/30 rounded-full blur-3xl animate-spin" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/20 to-pink-500 rounded-full blur-3xl animate-spin" />
+        <div className="absolute inset-0 animate-[spin_45s_linear_infinite]">
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -32,11 +33,10 @@ export default function Hero() {
               backgroundSize: "50px 50px",
             }}
           />
-        </div> */}
+        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 text-gray-900">
           Le montage qui
           <br />
@@ -94,22 +94,38 @@ export default function Hero() {
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <motion.div
+          ref={ref}
+          className="grid grid-cols-3 gap-8 max-w-3xl mx-auto"
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { transition: { staggerChildren: 0.2 } },
+            hidden: {},
+          }}
+        >
           {[
             { value: "20+", label: "Vidéos créées" },
             { value: "30K+", label: "Vues générées" },
             { value: "98%", label: "Satisfaction" },
           ].map((stat, i) => (
-            <div key={i} className="text-center">
+            <motion.div
+              key={i}
+              className="text-center"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
+            >
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-700 bg-clip-text text-transparent mb-2">
                 {stat.value}
               </div>
               <div className="text-sm text-slate-950 font-bold">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <button
           onClick={() => scrollToSection("about")}

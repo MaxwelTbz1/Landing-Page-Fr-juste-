@@ -1,8 +1,12 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useRef, useEffect } from "react";
 
 export default function Offers() {
+  const phoneNumber = "22961633682"; 
+
   const plans = [
     {
       name: "Starter",
@@ -48,6 +52,16 @@ export default function Offers() {
     },
   ];
 
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.3 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
+  }, [inView, controls]);
+
   return (
     <section
       id="offers"
@@ -55,68 +69,98 @@ export default function Offers() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <span className="inline-block text-xl font-semibold text-pink-600 mb-4 tracking-wide uppercase">
-            Mes offres
-          </span>
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Des services adaptés à{" "}
-            <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-700 to-purple-600 bg-clip-text text-transparent">
               vos besoins
             </span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {plans.map((plan, i) => (
-            <div
-              key={i}
-              className={`relative bg-white rounded-3xl p-8 border-2 transition-all hover:shadow-2xl hover:-translate-y-2 ${
-                plan.popular
-                  ? "border-purple-300 shadow-xl scale-105"
-                  : "border-gray-200"
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
-                  Plus populaire
-                </div>
-              )}
+        <motion.div
+          ref={ref}
+          className="grid lg:grid-cols-3 gap-10"
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { transition: { staggerChildren: 0.25 } },
+            hidden: {},
+          }}
+        >
+          {plans.map((plan, i) => {
+            const message = encodeURIComponent(
+              `Bonjour, je suis intéressé par l'offre ${plan.name}.`
+            );
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {plan.name}
-                </h3>
-                <div className="flex items-baseline gap-2">
-                  <span
-                    className={`text-5xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}
-                  >
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-500">/projet</span>
-                </div>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-start gap-3">
-                    <div
-                      className={`w-5 h-5 rounded-full bg-gradient-to-r ${plan.color} flex items-center justify-center flex-shrink-0 mt-0.5`}
-                    >
-                      <Check className="text-white" size={14} />
-                    </div>
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={`w-full bg-gradient-to-r ${plan.color} text-white py-4 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all`}
+            return (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 60, scale: 0.9 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.6, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+                className={`relative bg-white rounded-3xl p-12 border-2 transition-all duration-500 ${
+                  plan.popular
+                    ? "border-purple-300 shadow-2xl scale-105"
+                    : "border-gray-200 shadow-lg"
+                }`}
               >
-                Choisir {plan.name}
-              </button>
-            </div>
-          ))}
-        </div>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-slate-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    Plus populaire
+                  </div>
+                )}
+
+                <div className="mb-10">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className={`text-6xl font-extrabold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}
+                    >
+                      {plan.price}
+                    </span>
+                    <span className="text-gray-500 text-lg">/projet</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-5 mb-10">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-3">
+                      <div
+                        className={`w-6 h-6 rounded-full bg-gradient-to-r ${plan.color} flex items-center justify-center flex-shrink-0 mt-0.5`}
+                      >
+                        <Check className="text-white" size={16} />
+                      </div>
+                      <span className="text-gray-700 text-lg">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center bg-gradient-to-r ${plan.color} text-white py-5 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-[1.03] transition-all`}
+                >
+                  Choisir {plan.name}
+                </a>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

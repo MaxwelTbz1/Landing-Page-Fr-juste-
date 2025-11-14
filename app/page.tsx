@@ -12,8 +12,8 @@ export default function HomePage() {
     <main className="relative bg-white text-gray-900 overflow-hidden">
       <Navbar />
       <Header />
-      <About />
       <Portfolio />
+      <About />
       <Offers />
       <Testimonials />
       <Contact />

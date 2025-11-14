@@ -38,6 +38,13 @@ body {
   font-family: Arial, 'Lucida Sans Regular', Verdana, Helvetica, sans-serif;
 }
 
+ul {
+  font-family: Lucida ;
+}
+
+h1 {
+  
+}
 
 @keyframes rotate-slow {
   0% {

@@ -120,12 +120,10 @@
 
 "use client";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import logo from "/public/logo.png";
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -139,14 +137,13 @@ export default function Navbar() {
     { label: "À propos", id: "about" },
     { label: "Portfolio", id: "portfolio" },
     { label: "Offres", id: "offers" },
-    { label: "Contact", id: "contact" },
+    // { label: "", id: "contact" },
   ];
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setMobileMenuOpen(false);
     } else {
       console.warn(`Section introuvable: #${id}`);
     }
@@ -162,10 +159,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-[80px]">
         <div
-          className="flex items-center gap-3 cursor-pointer"
+          className="flex items-center gap-3 cursor-pointer w-full lg:w-auto justify-center lg:justify-start"
           onClick={() => scrollToSection("accueil")}
         >
-          <a href="#" className="block relative">
             <div className="relative w-[100px] h-[100px] overflow-visible">
               <Image
                 src={logo}
@@ -174,10 +170,9 @@ export default function Navbar() {
                 className="object-contain scale-150 -translate-y-1"
               />
             </div>
-          </a>
         </div>
 
-        <ul className="hidden lg:flex gap-10 text-base font-medium">
+        <ul className="hidden lg:flex gap-10 text-1xl font-bold">
           {navItems.map((item) => (
             <li key={item.id}>
               <button
@@ -197,42 +192,9 @@ export default function Navbar() {
           onClick={() => scrollToSection("contact")}
           className="hidden lg:block bg-gradient-to-r from-zinc-500 to-purple-600 text-white px-7 py-3 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all"
         >
-          Commencer
-        </button>
-
-        <button
-          className={`lg:hidden transition-colors ${
-            scrolled ? "text-gray-900" : "text-black"
-          }`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          Contact
         </button>
       </div>
-
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="absolute top-20 right-6 left-6 bg-white rounded-3xl shadow-2xl p-8 animate-in">
-            <ul className="space-y-4">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => scrollToSection(item.id)}
-                    className="w-full text-left text-lg font-medium text-gray-800 hover:text-pink-600 transition-colors py-2"
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

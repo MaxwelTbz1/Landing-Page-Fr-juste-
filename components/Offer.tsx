@@ -2,16 +2,16 @@
 
 import { Check } from "lucide-react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function Offers() {
-  const phoneNumber = "22961633682"; 
+  const phoneNumber = "22961633682";
 
   const plans = [
     {
       name: "Starter",
       price: "49€",
-      color: "from-pink-500 to-pink-600",
+      color: "from-slate-500 to-purple-700", 
       features: [
         "Montage de Shorts (jusqu'à 60s)",
         "Sous-titres animés",
@@ -24,7 +24,7 @@ export default function Offers() {
     {
       name: "Pro",
       price: "149€",
-      color: "from-purple-500 to-purple-600",
+      color: "from-slate-600 to-purple-700", 
       popular: true,
       features: [
         "Édition YouTube complète",
@@ -39,7 +39,7 @@ export default function Offers() {
     {
       name: "Premium",
       price: "299€",
-      color: "from-rose-500 to-rose-600",
+      color: "from-slate-600 to-purple-700", 
       features: [
         "Pack créateur complet",
         "Branding personnalisé",
@@ -52,15 +52,17 @@ export default function Offers() {
     },
   ];
 
-
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.3 });
   const controls = useAnimation();
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   useEffect(() => {
-    if (inView) controls.start("visible");
-    else controls.start("hidden");
-  }, [inView, controls]);
+    if (inView && !hasPlayed) {
+      controls.start("visible");
+      setHasPlayed(true); 
+    }
+  }, [inView, hasPlayed, controls]);
 
   return (
     <section
@@ -71,7 +73,7 @@ export default function Offers() {
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Des services adaptés à{" "}
-            <span className="bg-gradient-to-r from-slate-700 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-950 to-purple-800 bg-clip-text text-transparent">
               vos besoins
             </span>
           </h2>
@@ -111,12 +113,12 @@ export default function Offers() {
                 }}
                 className={`relative bg-white rounded-3xl p-12 border-2 transition-all duration-500 ${
                   plan.popular
-                    ? "border-purple-300 shadow-2xl scale-105"
+                    ? "border-indigo-400 shadow-2xl scale-105"
                     : "border-gray-200 shadow-lg"
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-slate-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-slate-900 to-purple-700 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
                     Plus populaire
                   </div>
                 )}
@@ -148,7 +150,6 @@ export default function Offers() {
                   ))}
                 </ul>
 
-                
                 <a
                   href={whatsappUrl}
                   target="_blank"

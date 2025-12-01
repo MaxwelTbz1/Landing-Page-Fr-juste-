@@ -136,7 +136,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Vidéo responsive */}
+        
         <div className="relative w-full max-w-[1000px] mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl mb-12 border border-gray-200">
           <iframe
             className="absolute inset-0 w-full h-full"
@@ -147,7 +147,7 @@ export default function Hero() {
           />
         </div>
 
-        {/* Bouton scroll */}
+        
         <button
           onClick={() => scrollToSection("about")}
           className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 animate-bounce"

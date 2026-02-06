@@ -202,12 +202,12 @@ export default function Portfolio() {
     { title: "Promo produit", videoId: "MUuKRltFYM0" },
     { title: "Types de Personnes", videoId: "jUb6Ol4xkpA" },
     { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw" },
-    { title: "Animation Matt Gray", videoId: "-VGUpMAY3oU" },
+    { title: "IZOUNDJI GANG", videoId: "-VGUpMAY3oU" },
   ];
 
   return (
     <section className="py-32 px-6 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-center text-5xl md:text-6xl font-bold text-gray-900 mb-16">
           Mes{" "}
           <span className="bg-gradient-to-r from-slate-900 to-purple-600 bg-clip-text text-transparent">
@@ -257,7 +257,7 @@ export default function Portfolio() {
 }
 
 function chunkVideos(videos: any[]) {
-  const layout = [2, 1, 2, 1, 2];
+  const layout = [2, 1, 2, 1, 2, 1];
   const rows: any[] = [];
 
   let index = 0;

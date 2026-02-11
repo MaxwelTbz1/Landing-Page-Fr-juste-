@@ -195,14 +195,16 @@ export default function Portfolio() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const videos = [
-    { title: "Short Marcus Youtube", videoId: "WmhZC2WcTIg" },
-    { title: "Présentation Friym", videoId: "sHPm1HSulVI" },
-    { title: "YouTube Short Yomi Denzel", videoId: "9R1jp1CpL1A" },
-    { title: "Tutoriel Friym", videoId: "TctQH1GJAdw" },
-    { title: "Promo produit", videoId: "MUuKRltFYM0" },
-    { title: "Types de Personnes", videoId: "jUb6Ol4xkpA" },
-    { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw" },
-    { title: "IZOUNDJI GANG", videoId: "-VGUpMAY3oU" },
+    { title: "Short Marcus Youtube", videoId: "WmhZC2WcTIg", type: "youtube" },
+    { title: "Présentation Friym", videoId: "sHPm1HSulVI", type: "youtube" },
+    { title: "YouTube Short Yomi Denzel", videoId: "9R1jp1CpL1A", type: "youtube" },
+    { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
+    { title: "Promo produit", videoId: "MUuKRltFYM0", type: "youtube" },
+    { title: "Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
+    { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
+    { title: "Clip musical : IZOUNDJI GANG", videoId: "-VGUpMAY3oU", type: "youtube" },
+    { title: "SaaS Explainer (One point)", videoId: "EdLVzf4on5c", type: "youtube" },
+    { title: "Secret du Maïs (Bénin)", videoUrl: "/3345312376393088436.mp4", type: "local", thumbnail: "/img1.jpg" },
   ];
 
   return (
@@ -229,17 +231,30 @@ export default function Portfolio() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
+
               <motion.div
                 className="relative bg-black rounded-2xl overflow-hidden shadow-2xl w-full max-w-4xl aspect-video"
                 initial={{ scale: 0.85, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.85, opacity: 0 }}
               >
-                <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&rel=0`}
-                  allowFullScreen
-                  className="w-full h-full"
-                />
+                {/* LOGIQUE D'AFFICHAGE : LOCAL vs YOUTUBE */}
+                {selectedVideo.type === "local" ? (
+                  <video 
+                    src={selectedVideo.videoUrl} 
+                    controls 
+                    autoPlay 
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1&rel=0`}
+
+                    // src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&rel=0`}
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                )}
 
                 <button
                   className="absolute top-3 right-3 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur-md transition"
@@ -257,7 +272,7 @@ export default function Portfolio() {
 }
 
 function chunkVideos(videos: any[]) {
-  const layout = [2, 1, 2, 1, 2, 1];
+  const layout = [2, 2, 2, 2, 2, 2];
   const rows: any[] = [];
 
   let index = 0;
@@ -287,7 +302,7 @@ function Row({ row, onSelect }: any) {
         <VideoCard
           key={i}
           video={v}
-          onClick={() => onSelect(v.videoId)}
+          onClick={() => onSelect(v)}
           big={isSingle}
         />
       ))}
@@ -304,6 +319,7 @@ function VideoCard({
   onClick: () => void;
   big?: boolean;
 }) {
+  const thumb = video.type === "youtube" ? `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg` : video.thumbnail;
   return (
     <div
       onClick={onClick}
@@ -313,7 +329,8 @@ function VideoCard({
         className={`relative w-full ${big ? "aspect-[16/6]" : "aspect-video"}`}
       >
         <Image
-          src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+          // src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`} 
+          src={thumb || "/img1.jpg"}
           alt={video.title}
           fill
           className="object-cover"
@@ -330,3 +347,5 @@ function VideoCard({
     </div>
   );
 }
+
+

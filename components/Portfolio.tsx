@@ -224,18 +224,22 @@ export default function Portfolio() {
     { title: "Présentation Friym", videoId: "sHPm1HSulVI", type: "youtube" },
     // { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
     { title: "Promo produit", videoId: "MUuKRltFYM0", type: "youtube" },
-    { title: "Animation Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
-    { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
+    {
+      title: "SaaS Explainer (One point)",
+      videoId: "EdLVzf4on5c",
+      type: "youtube",
+    },
     {
       title: "Clip musical IZOUNDJI GANG",
       videoId: "-VGUpMAY3oU",
       type: "youtube",
     },
     {
-      title: "SaaS Explainer (One point)",
-      videoId: "EdLVzf4on5c",
+      title: "Animation Types de Personnes",
+      videoId: "jUb6Ol4xkpA",
       type: "youtube",
     },
+    { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
   ];
 
   return (

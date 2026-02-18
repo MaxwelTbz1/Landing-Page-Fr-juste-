@@ -198,13 +198,14 @@ export default function Portfolio() {
     { title: "Short Marcus Youtube", videoId: "WmhZC2WcTIg", type: "youtube" },
     { title: "Présentation Friym", videoId: "sHPm1HSulVI", type: "youtube" },
     { title: "YouTube Short Yomi Denzel", videoId: "9R1jp1CpL1A", type: "youtube" },
-    { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
+    // { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
     { title: "Promo produit", videoId: "MUuKRltFYM0", type: "youtube" },
     { title: "Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
     { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
     { title: "Clip musical : IZOUNDJI GANG", videoId: "-VGUpMAY3oU", type: "youtube" },
     { title: "SaaS Explainer (One point)", videoId: "EdLVzf4on5c", type: "youtube" },
-    { title: "Secret du Maïs (Bénin)", videoUrl: "/3345312376393088436.mp4", type: "local", thumbnail: "/img1.jpg" },
+    { title: "Secret du Maïs (Bénin)", videoUrl: "/compredeo.mp4", type: "local", thumbnail: "/img1.jpg" },
+    { title: "A la decouverte d'un met du Bénin", videoUrl: "/cvideo.mp4", type: "local", thumbnail: "/img2.jpg" },
   ];
 
   return (

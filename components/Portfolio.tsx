@@ -191,21 +191,51 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
+interface Video {
+  title: string;
+  type: "youtube" | "local";
+  videoId?: string;
+  videoUrl?: string;
+  thumbnail?: string;
+}
+
 export default function Portfolio() {
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const videos = [
     { title: "Short Marcus Youtube", videoId: "WmhZC2WcTIg", type: "youtube" },
     { title: "Présentation Friym", videoId: "sHPm1HSulVI", type: "youtube" },
-    { title: "YouTube Short Yomi Denzel", videoId: "9R1jp1CpL1A", type: "youtube" },
+    {
+      title: "YouTube Short Yomi Denzel",
+      videoId: "9R1jp1CpL1A",
+      type: "youtube",
+    },
     // { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
     { title: "Promo produit", videoId: "MUuKRltFYM0", type: "youtube" },
     { title: "Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
     { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
-    { title: "Clip musical : IZOUNDJI GANG", videoId: "-VGUpMAY3oU", type: "youtube" },
-    { title: "SaaS Explainer (One point)", videoId: "EdLVzf4on5c", type: "youtube" },
-    { title: "Secret du Maïs (Bénin)", videoUrl: "/compredeo.mp4", type: "local", thumbnail: "/img1.jpg" },
-    { title: "A la decouverte d'un met du Bénin", videoUrl: "/cvideo.mp4", type: "local", thumbnail: "/img2.jpg" },
+    {
+      title: "Clip musical : IZOUNDJI GANG",
+      videoId: "-VGUpMAY3oU",
+      type: "youtube",
+    },
+    {
+      title: "SaaS Explainer (One point)",
+      videoId: "EdLVzf4on5c",
+      type: "youtube",
+    },
+    {
+      title: "Secret du Maïs (Bénin)",
+      videoUrl: "/compredeo.mp4",
+      type: "local",
+      thumbnail: "/img1.jpg",
+    },
+    {
+      title: "A la decouverte d'un met du Bénin",
+      videoUrl: "/cvideo.mp4",
+      type: "local",
+      thumbnail: "/img2.jpg",
+    },
   ];
 
   return (
@@ -232,7 +262,6 @@ export default function Portfolio() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-
               <motion.div
                 className="relative bg-black rounded-2xl overflow-hidden shadow-2xl w-full max-w-4xl aspect-video"
                 initial={{ scale: 0.85, opacity: 0 }}
@@ -241,16 +270,15 @@ export default function Portfolio() {
               >
                 {/* LOGIQUE D'AFFICHAGE : LOCAL vs YOUTUBE */}
                 {selectedVideo.type === "local" ? (
-                  <video 
-                    src={selectedVideo.videoUrl} 
-                    controls 
-                    autoPlay 
+                  <video
+                    src={selectedVideo.videoUrl}
+                    controls
+                    autoPlay
                     className="w-full h-full object-contain"
                   />
                 ) : (
                   <iframe
                     src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1&rel=0`}
-
                     // src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&rel=0`}
                     allowFullScreen
                     className="w-full h-full"
@@ -290,16 +318,19 @@ function chunkVideos(videos: any[]) {
   return rows;
 }
 
-function Row({ row, onSelect }: any) {
+function Row({
+  row,
+  onSelect,
+}: {
+  row: Video[];
+  onSelect: (v: Video) => void;
+}) {
   const isSingle = row.length === 1;
-
   return (
     <div
-      className={`grid gap-10 ${
-        isSingle ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"
-      }`}
+      className={`grid gap-10 ${isSingle ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}
     >
-      {row.map((v: any, i: number) => (
+      {row.map((v, i) => (
         <VideoCard
           key={i}
           video={v}
@@ -316,11 +347,15 @@ function VideoCard({
   onClick,
   big,
 }: {
-  video: any;
+  video: Video;
   onClick: () => void;
   big?: boolean;
 }) {
-  const thumb = video.type === "youtube" ? `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg` : video.thumbnail;
+  const thumb =
+    video.type === "youtube"
+      ? `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`
+      : video.thumbnail;
+
   return (
     <div
       onClick={onClick}
@@ -330,7 +365,6 @@ function VideoCard({
         className={`relative w-full ${big ? "aspect-[16/6]" : "aspect-video"}`}
       >
         <Image
-          // src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`} 
           src={thumb || "/img1.jpg"}
           alt={video.title}
           fill
@@ -348,5 +382,3 @@ function VideoCard({
     </div>
   );
 }
-
-

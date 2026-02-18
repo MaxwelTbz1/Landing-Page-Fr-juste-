@@ -212,7 +212,7 @@ export default function Portfolio() {
     },
     // { title: "Tutoriel Friym", videoId: "TctQH1GJAdw", type: "youtube" },
     { title: "Promo produit", videoId: "MUuKRltFYM0", type: "youtube" },
-    { title: "Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
+    { title: "Animation : Types de Personnes", videoId: "jUb6Ol4xkpA", type: "youtube" },
     { title: "Animation Matt Gray", videoId: "5SJ2L8eOAGw", type: "youtube" },
     {
       title: "Clip musical : IZOUNDJI GANG",
@@ -225,13 +225,13 @@ export default function Portfolio() {
       type: "youtube",
     },
     {
-      title: "Secret du Maïs (Bénin)",
+      title: "Short Retour en Afrique",
       videoUrl: "/compredeo.mp4",
       type: "local",
       thumbnail: "/img1.jpg",
     },
     {
-      title: "A la decouverte d'un met du Bénin",
+      title: "Short Retour en Afrique",
       videoUrl: "/cvideo.mp4",
       type: "local",
       thumbnail: "/img2.jpg",
